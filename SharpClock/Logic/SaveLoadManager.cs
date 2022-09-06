@@ -7,7 +7,6 @@ namespace SharpClock.Logic
     public class SaveLoadManager
     {
         /* TODO
-         * opravit padání programu když neexistuje txt
          * 
          * Upravit záznam
          * Smazat záznam
@@ -20,7 +19,7 @@ namespace SharpClock.Logic
         {
             if (!File.Exists(path))
             {
-                File.Create(path);
+                using (FileStream fs = File.Create(path)) { }
             }
         }
 
@@ -66,7 +65,6 @@ namespace SharpClock.Logic
         public List<Lesson> GetRecords()
         {
             CheckFile();
-
             List<Lesson> lessons = new List<Lesson>();
 
             foreach(string line in File.ReadLines(path))
